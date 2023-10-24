@@ -1,0 +1,28 @@
+server:
+  port: ${HTTP_SERVER_PORT:8080}
+spring:
+  main:
+    banner-mode: off
+  rsocket:
+    chat-mapping:
+        send: chat.send
+        receive: chat.receive
+
+    server:
+      transport: websocket
+      mapping-path: ${RSOCKET_PATH_NAME:/chat}
+      port: ${RSOCKET_PORT:7000}
+  r2dbc:
+    url: r2dbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5432}/${POSTGRES_DATABASE:test_service}
+    username: ${POSTGRES_USERNAME:postgres}
+    password: ${POSTGRES_PASSWORD:test}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+
+cache:
+  capacity: 5
