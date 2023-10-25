@@ -1,27 +1,26 @@
 package ru.d3fix4m.live_chat.domain.persistence.entity;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table
-public class Message {
+@Table(name = "room")
+public class Room {
     @Id
     private UUID id;
 
-    private UUID roomId;
+    private String name;
 
-    private String message;
+    private LocalDateTime createdAt;
 
-    private String senderName;
-
-    private LocalTime sendedAt;
 }
